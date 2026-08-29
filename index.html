@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="TVlDI6ymZucQS8nnoOhNvlRp9lZgFLX-xIATCI6Kl2M" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Somart Dalen | WEP Student & Web Developer</title>
@@ -10,26 +9,42 @@
   <meta name="keywords" content="Somart Dalen, WEP student, PNC, web development, web design, Cambodia, UI UX, HTML, CSS, JavaScript">
   <meta name="author" content="Somart Dalen">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#2563eb">
-  <title>Somart Dalen | WEP Student & Web Developer</title>
+  <meta name="theme-color" content="#0b0e14">
+
   <meta property="og:title" content="Somart Dalen | WEP Student & Web Developer">
   <meta property="og:description" content="Portfolio of Somart Dalen — WEP student at PNC interested in web design, development, and UI/UX.">
   <meta property="og:type" content="website">
 
   <link rel="canonical" href="https://your-domain.com/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-mark">sd<span>.</span><i class="preloader-cursor">_</i></div>
+    <div class="preloader-track"><i id="preloaderBar"></i></div>
+  </div>
+
   <header class="header" id="top">
     <nav class="nav container" aria-label="Main navigation">
-      <a class="logo" href="#home" aria-label="Somart Dalen home">SD<span>.</span></a>
+      <a class="logo" href="#home" aria-label="Somart Dalen home">
+        <span class="logo-dot" aria-hidden="true"></span>SD<span>.....</span>
+      </a>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
 
       <ul class="nav-links" id="navLinks">
+        <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
         <li><a class="nav-link active" href="#home">Home</a></li>
         <li><a class="nav-link" href="#about">About</a></li>
         <li><a class="nav-link" href="#skills">Skills</a></li>
@@ -44,18 +59,24 @@
   <main>
     <section class="hero section" id="home">
       <div class="hero-bg"></div>
+      <canvas class="hero-particles" id="particles" aria-hidden="true"></canvas>
       <div class="container hero-grid">
         <div class="hero-content reveal">
           <p class="eyebrow">Hello, I'm</p>
-          <h1>Somart <span>Dalen</span></h1>
+          <h1 class="glitch-name" data-text="Somart Dalen">Somart <span>Dalen</span></h1>
           <h2>WEP Student at PNC</h2>
           <p class="hero-text">
             I enjoy learning web design and web development, and I am building
             my skills to create useful, beautiful, and responsive websites.
           </p>
 
+          <div class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            Open to internships & collaborations
+          </div>
+
           <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">View My Projects <span>→</span></a>
+            <a href="#projects" class="btn btn-primary"><span class="btn-prompt">&gt;_</span> View My Projects</a>
             <a href="#contact" class="btn btn-outline">Contact Me</a>
           </div>
 
@@ -67,13 +88,22 @@
 
         <div class="profile-wrap reveal">
           <div class="profile-orbit"></div>
-          <div class="profile-card">
-            <div class="profile-placeholder" aria-label="Profile image placeholder">
-              <div class="profile-initials">SD</div>
-              <span>Profile Photo</span>
+          <div class="terminal-window">
+            <div class="terminal-bar">
+              <span class="tdot tdot-red"></span><span class="tdot tdot-yellow"></span><span class="tdot tdot-green"></span>
+              <span class="terminal-title">whoami.sh</span>
             </div>
-            <div class="profile-badge">Web Development Student</div>
+            <div class="terminal-body" id="terminalBody">
+              <p class="term-line"><span class="prompt">$</span> whoami</p>
+              <p class="term-line"><span class="typed-line" data-text="Somart Dalen"></span></p>
+              <p class="term-line"><span class="prompt">$</span> cat role.txt</p>
+              <p class="term-line"><span class="typed-line" data-text="WEP Student · Web Developer"></span></p>
+              <p class="term-line"><span class="prompt">$</span> cat focus.txt</p>
+              <p class="term-line"><span class="typed-line" data-text="HTML · CSS · JavaScript · UI/UX"></span></p>
+              <p class="term-line"><span class="prompt">$</span> <span class="cursor-blink">▌</span></p>
+            </div>
           </div>
+          <div class="terminal-chip">Web Development Student</div>
         </div>
       </div>
     </section>
@@ -119,13 +149,13 @@
         </div>
 
         <div class="skills-grid">
-          <article class="skill-card reveal"><div class="skill-icon">HTML</div><h3>HTML</h3><p>Semantic structure and accessible web pages.</p><div class="skill-bar"><i style="--level: 88%"></i></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">CSS</div><h3>CSS</h3><p>Layouts, styling, animations, and responsive design.</p><div class="skill-bar"><i style="--level: 84%"></i></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">JS</div><h3>JavaScript</h3><p>Interactive interfaces and dynamic web features.</p><div class="skill-bar"><i style="--level: 68%"></i></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">S</div><h3>SASS</h3><p>Organized, reusable, and maintainable CSS.</p><div class="skill-bar"><i style="--level: 70%"></i></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">GH</div><h3>Git & GitHub</h3><p>Version control and project collaboration.</p><div class="skill-bar"><i style="--level: 72%"></i></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">UX</div><h3>UI/UX Design</h3><p>User flows, interfaces, wireframes, and usability.</p><div class="skill-bar"><i style="--level: 65%"></i></div></article>
-          <article class="skill-card reveal"><div class="skill-icon">RWD</div><h3>Responsive Web Design</h3><p>Websites that work across phones, tablets, and desktops.</p><div class="skill-bar"><i style="--level: 82%"></i></div></article>
+          <article class="skill-card reveal"><div class="skill-icon">HTML</div><h3>HTML</h3><p>Semantic structure and accessible web pages.</p><div class="skill-bar"><i style="--level: 88%"></i></div><span class="skill-value" data-target="88">0%</span></article>
+          <article class="skill-card reveal"><div class="skill-icon">CSS</div><h3>CSS</h3><p>Layouts, styling, animations, and responsive design.</p><div class="skill-bar"><i style="--level: 84%"></i></div><span class="skill-value" data-target="84">0%</span></article>
+          <article class="skill-card reveal"><div class="skill-icon">JS</div><h3>JavaScript</h3><p>Interactive interfaces and dynamic web features.</p><div class="skill-bar"><i style="--level: 68%"></i></div><span class="skill-value" data-target="68">0%</span></article>
+          <article class="skill-card reveal"><div class="skill-icon">S</div><h3>SASS</h3><p>Organized, reusable, and maintainable CSS.</p><div class="skill-bar"><i style="--level: 70%"></i></div><span class="skill-value" data-target="70">0%</span></article>
+          <article class="skill-card reveal"><div class="skill-icon">GH</div><h3>Git & GitHub</h3><p>Version control and project collaboration.</p><div class="skill-bar"><i style="--level: 72%"></i></div><span class="skill-value" data-target="72">0%</span></article>
+          <article class="skill-card reveal"><div class="skill-icon">UX</div><h3>UI/UX Design</h3><p>User flows, interfaces, wireframes, and usability.</p><div class="skill-bar"><i style="--level: 65%"></i></div><span class="skill-value" data-target="65">0%</span></article>
+          <article class="skill-card reveal"><div class="skill-icon">RWD</div><h3>Responsive Web Design</h3><p>Websites that work across phones, tablets, and desktops.</p><div class="skill-bar"><i style="--level: 82%"></i></div><span class="skill-value" data-target="82">0%</span></article>
         </div>
       </div>
     </section>
@@ -140,22 +170,34 @@
 
         <div class="projects-grid">
           <article class="project-card reveal">
-            <div class="project-image project-one"><span>🛍️</span></div>
+            <div class="project-image project-one">
+              <span class="file-tab"><i class="file-dot file-dot-js"></i>shop.js</span>
+              <span>🛍️</span>
+            </div>
             <div class="project-body"><span class="project-number">01</span><h3>Shopping Website</h3><p>A clean online shopping interface with products, search, filters, and cart interactions.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a href="#" class="project-link">View Project ↗</a></div>
           </article>
 
           <article class="project-card reveal">
-            <div class="project-image project-two"><span>👨‍💻</span></div>
+            <div class="project-image project-two">
+              <span class="file-tab"><i class="file-dot file-dot-html"></i>portfolio.html</span>
+              <span>👨‍💻</span>
+            </div>
             <div class="project-body"><span class="project-number">02</span><h3>Personal Portfolio</h3><p>A responsive personal website designed to introduce my skills, education, and projects.</p><div class="tags"><span>HTML</span><span>CSS</span><span>Responsive</span></div><a href="#" class="project-link">View Project ↗</a></div>
           </article>
 
           <article class="project-card reveal">
-            <div class="project-image project-three"><span>🎨</span></div>
+            <div class="project-image project-three">
+              <span class="file-tab"><i class="file-dot file-dot-figma"></i>flows.fig</span>
+              <span>🎨</span>
+            </div>
             <div class="project-body"><span class="project-number">03</span><h3>UI/UX Design Project</h3><p>A user-centered design project focused on personas, user flows, wireframes, and interfaces.</p><div class="tags"><span>Figma</span><span>UI/UX</span><span>UX Flow</span></div><a href="#" class="project-link">View Project ↗</a></div>
           </article>
 
           <article class="project-card reveal">
-            <div class="project-image project-four"><span>📱</span></div>
+            <div class="project-image project-four">
+              <span class="file-tab"><i class="file-dot file-dot-css"></i>style.scss</span>
+              <span>📱</span>
+            </div>
             <div class="project-body"><span class="project-number">04</span><h3>Responsive Website</h3><p>A mobile-first website practice project with flexible layouts and interactive components.</p><div class="tags"><span>CSS</span><span>SASS</span><span>JavaScript</span></div><a href="#" class="project-link">View Project ↗</a></div>
           </article>
         </div>
@@ -222,7 +264,7 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
 
-          <button type="submit" class="btn btn-primary">Send Message <span>→</span></button>
+          <button type="submit" class="btn btn-primary"><span class="btn-prompt">&gt;_</span> Send Message</button>
           <p class="form-status" id="formStatus" role="status"></p>
         </form>
       </div>
@@ -231,7 +273,7 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div><a class="logo" href="#top">SD<span>.</span></a><p>WEP Student at PNC</p></div>
+      <div><a class="logo" href="#top">sd<span>.dev</span></a><p>WEP Student at PNC</p></div>
       <p>© 2026 Somart Dalen. All Rights Reserved.</p>
       <a href="#top" class="back-top" aria-label="Back to top">↑</a>
     </div>
