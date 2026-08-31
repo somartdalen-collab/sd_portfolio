@@ -154,6 +154,33 @@ if (terminal) {
   terminalObserver.observe(terminal);
 }
 
+/* ===== Typing animation for section labels + hero subtitle ===== */
+function typeElement(el) {
+  if (!el || el.dataset.typed === "true") return;
+  el.dataset.typed = "true";
+  const text = el.dataset.text || el.textContent;
+  typeLine(el, text, 28).then(() => el.classList.add("is-done"));
+}
+
+window.addEventListener("load", () => {
+  document.querySelectorAll(".hero .type-target").forEach((el) => typeElement(el));
+});
+
+const labelTypeObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      typeElement(entry.target);
+      observer.unobserve(entry.target);
+    });
+  },
+  { threshold: 0.4 }
+);
+document.querySelectorAll(".type-target").forEach((el) => {
+  if (el.closest(".hero")) return;
+  labelTypeObserver.observe(el);
+});
+
 /* ===== Animated skill bars + count-up ===== */
 const skillCards = document.querySelectorAll(".skill-card");
 function animateCount(el, target, duration) {
@@ -312,7 +339,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
         const b = particles[j];
         const dist = Math.hypot(a.x - b.x, a.y - b.y);
         if (dist < 130) {
-          ctx.strokeStyle = `rgba(140,124,255,${(1 - dist / 130) * 0.35})`;
+          ctx.strokeStyle = `rgba(34,211,238,${(1 - dist / 130) * 0.35})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -324,7 +351,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
     for (const p of particles) {
       ctx.beginPath();
-      ctx.fillStyle = "rgba(184,175,255,.8)";
+      ctx.fillStyle = "rgba(103,232,249,.8)";
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
     }
